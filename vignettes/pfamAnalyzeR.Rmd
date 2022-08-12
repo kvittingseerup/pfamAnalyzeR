@@ -1,0 +1,49 @@
+---
+title: "Vignette for pfamAnalyzeR"
+author: "Kristoffer Vitting-Seerup"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+   rmdformats::downcute:
+      default_style: "dark"
+vignette: >
+  %\VignetteIndexEntry{pfamAnalyzeR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Summary
+Protein domains are less static than previously thought. This R package aims to help with analysis of protein domains isotypes in data predicted by Pfam.
+
+## Workflow
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(pfamAnalyzeR)
+```
+
+```{r run analysis}
+### Create sting to file
+# note that you do not need to use the "system.file".
+# That is only needed when accessing files in an R package
+pfamResultFile <- system.file("extdata/pfam_results.txt", package = "pfamAnalyzeR")
+
+### Run entire pfam analysis
+pfamRes <- pfamAnalyzeR(pfamResultFile)
+
+### Look at data
+head(pfamRes, 2)
+
+### Summarize domain isotype
+table(pfamRes$domain_isotype)
+
+### Summarize domain isotype
+table(pfamRes$domain_isotype_simple)
+```
+
+From which it can be seen that a large fraction of protein domains are domain isotypes.

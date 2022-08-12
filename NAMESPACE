@@ -1,0 +1,12 @@
+### Import libraries
+import( readr )
+import( stringr )
+import( tibble )
+import( dplyr )
+import( magrittr )
+
+### Import sepecific functions
+importFrom("utils", "read.table")
+
+### Export functions
+exportPattern("^[[:alpha:]]+")
