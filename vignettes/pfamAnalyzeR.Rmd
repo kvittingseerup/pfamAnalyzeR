@@ -46,4 +46,4 @@ table(pfamRes$domain_isotype)
 table(pfamRes$domain_isotype_simple)
 ```
 
-From which it can be seen that a large fraction of protein domains are domain isotypes.
+From which it can be seen that a large fraction of protein domains found in regular data are non-reference isotypes.
