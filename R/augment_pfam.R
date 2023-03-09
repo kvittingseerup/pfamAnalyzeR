@@ -1,8 +1,6 @@
 #' Augment pfam domains with truncation/indel calculations
 #' @param pfamRes
 #' A data frame with pfam results as produced by \code{read_pfam}.
-#' @param useAllignmentCoordinates
-#' A logic indicating whether to use the coordinates of the aligned region (if set to TRUE) or the envelope region (if set to FALSE). Defaults to TRUE.
 #' @return
 #' The data.frame with the Pfam results now augmented with info on trunkation and indel sizes
 #' @examples
@@ -36,7 +34,7 @@ augment_pfam <- function(
             tibble::as_tibble() %>%
             dplyr::mutate(
                 hmm_alligned_length = hmm_end - hmm_start + 1,
-                seq_alligned_length = alignment_end - alignment_start + 1,
+                seq_alligned_length = envelope_end - envelope_start + 1,
                 indel_size = seq_alligned_length - hmm_alligned_length,
                 indel_frac = round( indel_size / hmm_alligned_length, digits = 3)
             ) %>%

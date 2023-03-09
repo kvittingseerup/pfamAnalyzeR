@@ -1,7 +1,7 @@
 Package: pfamAnalyzeR
 Type: Package
 Title: Identification of domain isotypes in pfam data
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: person(given="Kristoffer",family="Vitting-Seerup", role=c("cre","aut"),email="k.vitting.seerup@gmail.com",comment = c(ORCID = "0000-0002-6450-0608"))
 Description: Enables the user to read pfam prediction from both webserver and local versions into R. Afterwards it supports the identification of protein domain isotypes.
 License: GPL (>= 2)
