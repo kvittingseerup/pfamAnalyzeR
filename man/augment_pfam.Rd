@@ -8,8 +8,6 @@ augment_pfam(pfamRes)
 }
 \arguments{
 \item{pfamRes}{A data frame with pfam results as produced by \code{read_pfam}.}
-
-\item{useAllignmentCoordinates}{A logic indicating whether to use the coordinates of the aligned region (if set to TRUE) or the envelope region (if set to FALSE). Defaults to TRUE.}
 }
 \value{
 The data.frame with the Pfam results now augmented with info on trunkation and indel sizes
