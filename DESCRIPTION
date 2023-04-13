@@ -1,7 +1,7 @@
 Package: pfamAnalyzeR
 Type: Package
 Title: Identification of domain isotypes in pfam data
-Version: 0.99.5
+Version: 0.99.6
 Authors@R: person(given="Kristoffer",family="Vitting-Seerup", role=c("cre","aut"),email="k.vitting.seerup@gmail.com",comment = c(ORCID = "0000-0002-6450-0608"))
 Description: Protein domains is one of the most import annoation of proteins we have
     with the Pfam database/tool being (by far) the most used tool. This R package enables

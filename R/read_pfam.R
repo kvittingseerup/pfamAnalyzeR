@@ -73,7 +73,7 @@ read_pfam <- function(
                 stringsAsFactors = FALSE,
                 fill = TRUE,
                 header = FALSE,
-                col.names = 1:16,
+                col.names = seq_len(16),
                 sep = '\t',
                 skip = skipLine
             )
@@ -83,7 +83,7 @@ read_pfam <- function(
                 stringsAsFactors = FALSE,
                 fill = TRUE,
                 header = FALSE,
-                col.names = 1:16,
+                col.names = seq_len(16),
                 sep = '', # one or more white spaces
                 skip = skipLine
             )
@@ -136,7 +136,7 @@ read_pfam <- function(
                         file = fileVector,
                         col_names = paste0(
                             'X',
-                            1:(15+ activeResidueIncluded + 1)
+                            seq_len(15+ activeResidueIncluded + 1)
                         ),
                         skip = skipLine,
                         comment = '#',
@@ -212,7 +212,7 @@ read_pfam <- function(
 
         ### Old style
         if ( oldStyle & !newStyle ) {
-            colnames(localPfamRes) <- oldColnames[1:ncol(localPfamRes)]
+            colnames(localPfamRes) <- oldColnames[seq_len(ncol(localPfamRes))]
 
             if( 'residue' %in% colnames(localPfamRes) ) {
                 localPfamRes$residue[which(localPfamRes$residue == '')] <-
