@@ -11,10 +11,42 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-## Summary
-Protein domains are less static than previously thought. This R package aims to help with analysis of protein domains isotypes in data predicted by Pfam.
+## Background and Rational
+Protein domains is one of the most import types of annotation we have for proteins. For such annotation the Pfam database/tool is (by far) the most used tool and the _de-facto_ way protein domains are currently defined. We have recently shown most human protein domains exist as multiple distinct variants termed domain isotypes - a until now overlooked aspect of protein domains. Domain isotypes are used in a cell, tissue, and  disease-specific manner. Accordingly, we find that domain isotypes, compared to each other, modulate, or abolish the functionality of a protein domain. For more information check our [preprint](https://doi.org/10.1101/2022.08.12.503740)
+
+This R package enables the user to read the Pfam prediction from both webserver and stand-alone runs into R and afterwards identify and classification domain isotypes from Pfam results.
+
+These 5 isotypes are the reference isotype and four isotypes that, compared to the reference isotype, are best described as a truncation, an insertion, a deletion, or combinations thereof ("complex") and are visualized in the figure below:
+
+<center>
+
+<embed src="schemtic_overview.jpg" width="720" height="460">
+
+</center>
+
+
+
+## Installation
+
+pfamAnalyzeR is part of the Bioconductor repository and community which means it is distributed with, and dependent on, Bioconductor. Installation of pfamAnalyzeR is easy and can be done from within the R terminal. If it is the first time you use Bioconductor (or don't know if you have used it), simply copy-paste the following into an R session to install the basic Bioconductor packages (will only done if you don't already have them):
+
+    if (!requireNamespace("BiocManager", quietly = TRUE)){
+        install.packages("BiocManager")
+        BiocManager::install()
+    }
+
+If you already have installed Bioconductor, running these two commands will check whether updates for installed packages are available.
+
+After you have installed the basic Bioconductor packages you can install pfamAnalyzeR by copy-pasting the following into an R session:
+
+    BiocManager::install("pfamAnalyzeR")
+
+This will install the pfamAnalyzeR package as well as other R packages that are needed for pfamAnalyzeR to work.
+
 
 ## Workflow
+
+Lets take a look at how an analysis with pfamAnalyzeR looks
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -23,21 +55,40 @@ knitr::opts_chunk$set(
 )
 ```
 
+We start by loading the pfamAnalyzeR library.
+
 ```{r setup}
 library(pfamAnalyzeR)
 ```
 
-```{r run analysis}
+To showcase pfamAnalyzeR we have included the output of running a small toy dataset througth the pfam webserver in the R pacakge. This can be accessed as follows:
+
+```{r locate file}
 ### Create sting to file
 # note that you do not need to use the "system.file".
 # That is only needed when accessing files in an R package
-pfamResultFile <- system.file("extdata/pfam_results.txt", package = "pfamAnalyzeR")
+pfamResultFile <- system.file(
+    "extdata/pfam_results.txt",
+    package = "pfamAnalyzeR"
+)
 
+file.exists(pfamResultFile)
+```
+Now we can read in the Pfam result file and classify each domain into one of the 5 domain isotypes.
+
+```{r run analysis}
 ### Run entire pfam analysis
 pfamRes <- pfamAnalyzeR(pfamResultFile)
+```
 
-### Look at data
-head(pfamRes, 2)
+With this done we can explore the results a little:
+
+```{r explore results}
+
+### Look at a few entries
+pfamRes %>% 
+    select(seq_id, hmm_name, type, domain_isotype, domain_isotype_simple) %>% 
+    head()
 
 ### Summarize domain isotype
 table(pfamRes$domain_isotype)
@@ -46,4 +97,22 @@ table(pfamRes$domain_isotype)
 table(pfamRes$domain_isotype_simple)
 ```
 
-From which it can be seen that a large fraction of protein domains found in regular data are non-reference isotypes.
+From which it can be seen that a large fraction (!) of protein domains found in regular data are non-reference isotypes.
+
+<br />
+
+Please note that pfamAnalyzeR performs the isotype analysis regardless of Pfam result type:
+
+```{r type cautions}
+table(
+    pfamRes$type,
+    pfamRes$domain_isotype_simple
+)
+```
+
+Meaning if you are only interested in a specific annotation type you will have to subset it yourself.
+
+## SessionInfo
+```{r session info}
+sessionInfo()
+```

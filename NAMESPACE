@@ -10,4 +10,7 @@ import( magrittr )
 importFrom("utils", "read.table")
 
 ### Export functions
-exportPattern("^[[:alpha:]]+")
+export('read_pfam')
+export('augment_pfam')
+export('analyse_pfam_isotypes')
+export('pfamAnalyzeR')

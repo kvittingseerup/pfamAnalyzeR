@@ -1,20 +1,28 @@
 Package: pfamAnalyzeR
 Type: Package
 Title: Identification of domain isotypes in pfam data
-Version: 0.99.3
+Version: 0.99.4
 Authors@R: person(given="Kristoffer",family="Vitting-Seerup", role=c("cre","aut"),email="k.vitting.seerup@gmail.com",comment = c(ORCID = "0000-0002-6450-0608"))
-Description: Enables the user to read pfam prediction from both webserver and local versions into R. Afterwards it supports the identification of protein domain isotypes.
-License: GPL (>= 2)
+Description: Protein domains is one of the most import annoation of proteins we have
+    with the Pfam database/tool being (by far) the most used tool. This R package enables
+    the user to read the pfam prediction from both webserver and stand-alone runs into R.
+    We have recently shown most human protein domains exist as multiple distinct variants 
+    termed domain isotypes. Different domain isotypes are used in a cell, tissue, and 
+    disease-specific manner. Accordingly, we find that domain isotypes, compared to each other,
+    modulate, or abolish the functionality of a protein domain. This R package enables the
+    identification and classification of such domain isotypes from Pfam data.
+License: MIT
 Depends:
-    R (>= 4.0.0),
+    R (>= 4.3.0),
     readr,
     stringr,
+    dplyr
+Imports: 
+    utils,
     tibble,
-    dplyr,
     magrittr
-Imports: utils
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 RoxygenNote: 7.2.1
 Suggests: 
     knitr,
@@ -30,3 +38,4 @@ biocViews:
     FunctionalPrediction,
     GenePrediction,
     DataImport
+BugReports: https://github.com/kvittingseerup/pfamAnalyzeR/issues

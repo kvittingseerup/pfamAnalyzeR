@@ -22,7 +22,7 @@ analyse_pfam_isotypes <- function(
 ) {
     pfamRes %>%
         mutate(
-            domain_isotype = case_when(
+            domain_isotype = dplyr::case_when(
                 abs(indel_frac) <=  fracCutoff & truncation_frac <= fracCutoff ~ 'Reference',
                 abs(indel_frac)  >  fracCutoff & truncation_frac  > fracCutoff ~ 'Complex',
                 indel_frac       >  fracCutoff & truncation_frac <= fracCutoff ~ 'Insertion',
@@ -30,7 +30,7 @@ analyse_pfam_isotypes <- function(
                 abs(indel_frac) <=  fracCutoff & truncation_frac  > fracCutoff ~ 'Truncation',
                 TRUE ~ 'Something went wrong - contact author'
             ),
-            domain_isotype_simple =case_when(
+            domain_isotype_simple = dplyr::case_when(
                 domain_isotype == 'Reference' ~ 'Reference',
                 domain_isotype %in% c('Complex','Insertion','Deletion','Truncation') ~ 'Non-reference',
                 TRUE ~ 'Something went wrong - contact author'
