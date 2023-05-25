@@ -1,0 +1,12 @@
+citHeader("To cite package 'pfamAnalyzeR' in publications, use:")
+
+citEntry(
+   entry="Article",
+   title = "Most protein domains exist as multiple variants with distinct structure and function",
+   author = "Kristoffer Vitting-Seerup",
+   journal = "BioRxiv",
+   year = 2022,
+   doi = "10.1101/2022.08.12.503740",
+   url = "https://doi.org/10.1101/2022.08.12.503740",
+   textVersion = "Vitting-Seerup et al. Most protein domains exist as multiple variants with distinct structure and function. BioRxiv (2022)."
+)
